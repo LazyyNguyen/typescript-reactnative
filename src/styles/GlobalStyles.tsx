@@ -15,5 +15,12 @@ export default StyleSheet.create({
       },
       description: {
         
-      }
+      },
+      addItemButton: {
+        backgroundColor: '#eb8634',
+        paddingVertical: 20,
+        borderRadius: 5,
+        alignItems: 'center',
+      },
+      buttonText: {color: '#fff', fontWeight: '500'},
 })

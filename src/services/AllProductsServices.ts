@@ -11,4 +11,12 @@ export class AllProductsServices{
         let AllProductsURL:any = `${this.URL}/allProducts`
         return axios.post(AllProductsURL,data)
     }
+    public static async addCart(data:Product){
+        let AllProductsURL:any = `${this.URL}/cart`
+        return axios.post(AllProductsURL,data)
+    }
+    public static async showCart(){
+        let AllProductsURL:any = `${this.URL}/cart`
+        return axios.get(AllProductsURL)
+    }
 }

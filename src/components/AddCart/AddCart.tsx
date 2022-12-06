@@ -10,11 +10,11 @@ import {
 import { AllProductsServices } from '../../services/AllProductsServices';
 import {Product} from '../../modules/AllProducts';
 
-export interface Props {
+interface Props {
   setShoppingList: React.Dispatch<React.SetStateAction<Product[]>>;
   shoppingList: Product[];
 }
-const AddItem: React.FC<Props> = ({shoppingList, setShoppingList}) => {
+const AddCart: React.FC<Props> = ({shoppingList, setShoppingList}) => {
   const [item, setItem] = useState<Product>({
     name: '',
     price: 0 as number,
@@ -28,12 +28,14 @@ const AddItem: React.FC<Props> = ({shoppingList, setShoppingList}) => {
         ...shoppingList,
         {
           name: item.name,
+          quantity: item.quantity,
           price: item.price,
           image: item.image,
         },
       ]);
-      AllProductsServices.createProduct(item)
+      AllProductsServices.addCart(item)
       setItem({
+        quantity: 1,
         name: '',
         price: 1,
         image: '',
@@ -42,30 +44,7 @@ const AddItem: React.FC<Props> = ({shoppingList, setShoppingList}) => {
   };
   return (
     <View>
-      <Text style={styles.heading}>Add Shopping Item</Text>
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter item"
-          value={item.name}
-          onChangeText={text => setItem({...item, name: text})}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter price"
-          keyboardType="numeric"
-          value={String(item.price)}
-          onChangeText={text => setItem({...item, price:Number(text)})}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter item"
-          value={item.image}
-          onChangeText={text => setItem({...item, image: text})}
-        />
-        <TouchableOpacity style={styles.addItemButton} onPress={addItem}>
-          <Text style={styles.buttonText}>Add Item</Text>
-        </TouchableOpacity>
+      
       </View>
     </View>
   );
@@ -93,4 +72,4 @@ const styles = StyleSheet.create({
   },
   buttonText: {color: '#fff', fontWeight: '500'},
 });
-export default AddItem;
+export default AddCart;

@@ -10,11 +10,12 @@ import React,{FunctionComponent} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet, Text, TouchableOpacity, View,Dimensions } from 'react-native';
 
-import ProductDetail from '../screens/ProductDetail/ProductDetail';
+import ProductDetail from '../components/ProductDetail/ProductDetail';
 import Homepage from '../screens/Homepage/Homepage';
 import FollowUs from '../screens/components/FollowUs';
 import { AllProducts } from '../screens/components/AllProducts';
 import AddProductScreen from '../components/AddProduct/AddProductScreen';
+import Cart from '../screens/Cart/Cart'
 
 
 
@@ -152,8 +153,8 @@ export function Navigation() {
           }}
         />
         <Tab.Screen
-          name="ProductDetail"
-          component={ProductDetail}
+          name="Cart"
+          component={Cart}
           options={{
             tabBarLabel: () => { return null },
             tabBarIcon: ({ focused }) => (
@@ -171,6 +172,9 @@ export function Navigation() {
             ),
           }}
         />
+        <Tab.Screen name="ProductDetail" component={ProductDetail} options={{
+      tabBarButton: (props) => null, //like this
+    }}/>
       </Tab.Navigator>
     </>
   );

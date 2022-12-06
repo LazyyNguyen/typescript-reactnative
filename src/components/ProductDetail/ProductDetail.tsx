@@ -5,21 +5,28 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableHighlight,
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {NavigationProp} from '@react-navigation/native';
 
 import GlobalStyles from '../../styles/GlobalStyles';
-import {AllProducts} from '../components/AllProducts';
-interface ProductDetailProps {
+import {AllProducts} from '../../screens/components/AllProducts';
+import { AllProductsServices } from '../../services/AllProductsServices';
+
+export interface ProductDetailProps {
   navigation: NavigationProp<any, any>;
   route: any;
 }
 
 const ProductDetail = ({navigation, route}: ProductDetailProps) => {
   const {item} = route.params || {};
-  console.log('object', item);
+  const addCart = () => {
+      AllProductsServices.addCart(item)
+      navigation.navigate(`Cart`,{item})
+  }
+
   return <>
   {item ? 
   <View style={GlobalStyles.container}>
@@ -47,12 +54,15 @@ const ProductDetail = ({navigation, route}: ProductDetailProps) => {
               <Text style={{ marginLeft: 10, fontWeight: '700' }}>L</Text>
           </View>
       </View>
-   
-          <View style={{ alignItems: 'center', marginTop: 15, marginBottom: 15,height:35, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#111111', }}>
-              <Image style={{ height: 20, width: 20, }} source={require('../../../assets/images/fashion/icons/plus-white.png')} />
+      <TouchableOpacity style={GlobalStyles.addItemButton} onPress={addCart}>
+          <Text style={GlobalStyles.buttonText}>Add to basket</Text>
+        
+          {/* <View style={{ alignItems: 'center', marginTop: 15, marginBottom: 15,height:35, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#111111', }}> */}
+              {/* <Image style={{ height: 20, width: 20, }} source={require('../../../assets/images/fashion/icons/plus-white.png')} />
               <Text style={{ marginLeft: -210, color: '#fff' }}>Add to basket</Text>
-              <Image style={{ height: 20, width: 20, }} source={require('../../../assets/images/fashion/icons/Union.png')} />
-          </View>
+              <Image style={{ height: 20, width: 20, }} source={require('../../../assets/images/fashion/icons/Union.png')} /> */}
+          {/* </View> */}
+          </TouchableOpacity>
 
 
       <Text>MATERIALS</Text>
