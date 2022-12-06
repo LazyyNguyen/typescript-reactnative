@@ -1,17 +1,49 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {IItem} from './AddItem';
-const Item: React.FC<IItem> = ({name: item, quantity}) => {
+import React, { useEffect,useState} from 'react';
+import {View, Text, StyleSheet, FlatList,Image} from 'react-native';
+import {Product} from '../../modules/AllProducts';
+import { AllProductsServices } from '../../services/AllProductsServices';
+import { IState } from '../../screens/components/AllProducts';
+
+const Item: React.FC<Product> = ({name, price, image}) => {
+  const[listProduct, setListProduct] = useState<IState>({
+    loading: false,
+    products: [] as Product[],
+    errorMsg: '',
+  })
+  useEffect(() => {
+    setListProduct({ ...listProduct, loading: true })
+    AllProductsServices.getAllProducts()
+      .then(res => setListProduct({
+        ...listProduct,
+        loading: false,
+        products: res.data
+      }))
+      .catch(err => setListProduct({
+        ...listProduct, loading: false, errorMsg: err.message
+      }))
+  }, []);
   return (
-    <View style={styles.item}>
-      <Text style={styles.itemName}>{item}</Text>
-      <Text style={styles.quantity}>x{quantity}</Text>
-    </View>
+    <FlatList
+    data={listProduct.products}
+    keyExtractor={(_, index) => index.toString()}
+
+    renderItem={({ item, index }) => {
+      return (
+        <View style={styles.item}>
+        <Image style={{height:80, width: 50,}}source={{ uri: item?.image}}/>
+        <Text style={styles.itemName}>{item.name}</Text>
+        <Text style={styles.quantity}>${item.price}</Text>
+      </View>
+  
+
+      );
+    }}
+    />
   );
 };
 const styles = StyleSheet.create({
   item: {
-    padding: 20,
+    marginTop:15, marginBottom:15,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

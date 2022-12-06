@@ -1,10 +1,14 @@
 import axios from "axios"
-
+import {Product} from '../modules/AllProducts'
 export class AllProductsServices{
     private static URL:string = 'https://61bc1bd2d8542f00178245ab.mockapi.io'
 
-    public static getAllProducts(){
+    public static async getAllProducts(){
         let AllProductsURL:string = `${this.URL}/allProducts`
-        return axios.get(AllProductsURL)
+        return await axios.get(AllProductsURL)
+    }
+    public static async createProduct(data:Product){
+        let AllProductsURL:any = `${this.URL}/allProducts`
+        return axios.post(AllProductsURL,data)
     }
 }

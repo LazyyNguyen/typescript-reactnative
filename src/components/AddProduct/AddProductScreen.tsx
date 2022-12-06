@@ -1,24 +1,23 @@
 import React, {useState} from 'react';
 import {SafeAreaView, StyleSheet, View, FlatList} from 'react-native';
-import Header from './Header';
-import AddItem, {IItem} from './AddItem';
+import AddItem from './AddItem';
+import {Product} from '../../modules/AllProducts';
+
 import Item from './Item';
-const AddItemScreen = () => {
-  const [shoppingList, setShoppingList] = useState<Array<IItem>>([]);
+const AddProductScreen = () => {
+  const [shoppingList, setShoppingList] = useState<Product[]>([]);
   return (
     <SafeAreaView style={styles.container}>
-      <Header title="Shopping List" />
       <View style={styles.contentWrapper}>
         <AddItem
-          addHandler={(item) => {
-            setShoppingList([...shoppingList, item]);
-          }}
+          setShoppingList={setShoppingList}
+          shoppingList={shoppingList}
         />
         <FlatList
           data={shoppingList}
-          keyExtractor={(item, index) => `${item.name}-${index}`}
+          keyExtractor={(item, index) => `${item}-${index}`}
           renderItem={({item}) => (
-            <Item name={item.name} quantity={item.quantity} />
+            <Item name={item.name} price={item.price} image={item.image} />
           )}
         />
       </View>
@@ -34,4 +33,4 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
-export default AddItemScreen;
+export default AddProductScreen;

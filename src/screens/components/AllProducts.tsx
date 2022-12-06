@@ -5,25 +5,32 @@ import {
   StyleSheet,
   Dimensions,
   Text,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
+import { NavigationProp } from "@react-navigation/native";
 
 import { Product } from '../../modules/AllProducts';
 import { AllProductsServices } from '../../services/AllProductsServices';
 import FastImage from 'react-native-fast-image';
 
-interface IState {
+export interface IState {
   loading: boolean,
   products: Product[],
   errorMsg: string
 }
+
+export interface AllProductsProps{
+  navigation: NavigationProp<any,any>
+
+}
 const { width, height } = Dimensions.get('screen');
-const [selectedId, setSelectedId] = useState(null);
-const AllProducts: FunctionComponent = () => {
+export const AllProducts: FunctionComponent<AllProductsProps> = ({navigation}) => {
+  const [selectedId, setSelectedId] = useState(null);
   const [state, setState] = useState<IState>({
     loading: false,
     products: [] as Product[],
-    errorMsg: ''
+    errorMsg: '',
   });
 
   useEffect(() => {
@@ -39,10 +46,6 @@ const AllProducts: FunctionComponent = () => {
         ...state, loading: false, errorMsg: err.message
       }))
   }, []);
-  // console.log('state', { ...state });
-
-  // const {loading,users,errorMsg} = state
-
 
   return (
     <>
@@ -51,9 +54,9 @@ const AllProducts: FunctionComponent = () => {
         <FlatList
         style={style.flatList}
           columnWrapperStyle={{ justifyContent: 'space-around' }}
-          // numColumns={2}
-          horizontal
-          data={state.products}
+          numColumns={2}
+          data={state.products.slice(0,4)}
+          
           // showsHorizontalScrollIndicator={false}
           // snapToInterval={width}
           decelerationRate={'fast'}
@@ -63,12 +66,14 @@ const AllProducts: FunctionComponent = () => {
             const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
             const color = item.id === selectedId ? 'white' : 'black';
             return (
+              <TouchableOpacity onPress={() => navigation.navigate(`ProductDetail`,{item})}>
               <View style={style.products}>
                 <FastImage
                   source={{ uri: item?.image }} style={style.productImg} />
                 <Text style={style.productName}>{item.name}</Text>
                 <Text style={style.productPrice}>${item.price}</Text>
               </View>
+              </TouchableOpacity>
 
             );
           }}
@@ -104,4 +109,3 @@ const style = StyleSheet.create({
 
 });
 
-export default AllProducts;

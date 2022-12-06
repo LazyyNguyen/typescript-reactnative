@@ -13,6 +13,7 @@
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.4.1",
     "@react-navigation/native": "^6.0.14",
+    "@react-navigation/stack": "^6.3.7",
     "@types/axios": "^0.14.0",
     "axios": "^1.2.0",
     "browserslist": "^4.21.4",
@@ -23,10 +24,12 @@
     "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-material-design": "^0.3.7",
+    "react-native-numeric-input": "^1.9.1",
     "react-native-reanimated": "^2.13.0",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.2",
     "react-native-vector-icons": "^9.2.0",
+    "react-numeric-input": "^2.2.3",
     "regjsparser": "^0.9.1"
   },
   "devDependencies": {
@@ -39,6 +42,7 @@
     "@types/react": "^18.0.21",
     "@types/react-native": "^0.70.6",
     "@types/react-native-vector-icons": "^6.4.12",
+    "@types/react-numeric-input": "^2.2.4",
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
     "@typescript-eslint/parser": "^5.37.0",

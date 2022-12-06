@@ -12,6 +12,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import { User } from '../../modules/FollowUs'
 import { UsersServices } from '../../services/UsersServices';
+import GlobalStyles from '../../styles/GlobalStyles'
 
 interface IState {
     loading: boolean,
@@ -50,7 +51,7 @@ const FollowUs: FunctionComponent = () => {
 
             <View style={style.container}>
                 {state.errorMsg && <Text>Error</Text>}
-                <Text style={style.title}>Follow Us</Text>
+                <Text style={GlobalStyles.title}>Follow Us</Text>
                 <Image
                 style={{marginTop:10}}
                 source={require('../../../assets/images/fashion/icons/Instagram.png')}
@@ -96,11 +97,6 @@ const style = StyleSheet.create({
         height: 400,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    title: {
-        textAlign:'center',
-        fontSize: 30,
-        fontWeight: '600'
     },
     name: {
         position: 'absolute',
