@@ -29,10 +29,10 @@ const ItemCart: React.FC = () => {
     renderItem={({ item, index }) => {
       return (
         <View style={styles.item}>
-        <Image style={{height:80, width: 50,}}source={{ uri: item?.image}}/>
+        <Image style={{height:150, width: 130,}}source={{ uri: item?.image}}/>
         <Text style={styles.itemName}>{item.name}</Text>
         <Text style={styles.quantity}>${item.price}</Text>
-        <Text style={styles.quantity}>${item.quantity}</Text>
+        <Text style={{}}>{item.quantity}</Text>
 
       </View>
   
@@ -45,7 +45,7 @@ const ItemCart: React.FC = () => {
 const styles = StyleSheet.create({
   item: {
     marginTop:15, marginBottom:15,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,

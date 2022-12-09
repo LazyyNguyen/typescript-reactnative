@@ -10,6 +10,11 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "react-redux": "8.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "6.0.0",
+    "@react-native-async-storage/async-storage": "react-native-async-storage/async-storage",
+    "@reduxjs/toolkit": "1.5.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.4.1",
     "@react-navigation/native": "^6.0.14",
