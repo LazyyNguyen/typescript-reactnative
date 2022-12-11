@@ -12,10 +12,10 @@ import { Image, StyleSheet, Text, TouchableOpacity, View,Dimensions } from 'reac
 
 import ProductDetail from '../components/ProductDetail/ProductDetail';
 import Homepage from '../screens/Homepage/Homepage';
-import FollowUs from '../screens/components/FollowUs';
-import { AllProducts } from '../screens/components/AllProducts';
+import Search from '../screens/Search/Search';
+import { AllProducts } from '../screens/Product/AllProducts';
 import AddProductScreen from '../components/AddProduct/AddProductScreen';
-import Cart from '../screens/Cart/Cart'
+import Cart from '../screens/Cart/ItemCart'
 
 
 
@@ -30,7 +30,7 @@ const MyButton: React.FC<IButtonProps> = ({ onPress, children, ...props }) => {
       {...props}
       onPress={onPress}>
         <View
-        style={{ width:50, height:50, borderRadius:35,
+        style={{ width:60, height:60, borderRadius:35,marginBottom: 30,
         backgroundColor: '#e32f45', justifyContent: 'center',alignItems:'center'}}
 
         >
@@ -66,7 +66,7 @@ export function Navigation() {
             ...styles.shadow
           }
         }}
-        initialRouteName="ProductDetail"
+        initialRouteName="Home"
       >
         <Tab.Screen
           name="Home"
@@ -90,7 +90,7 @@ export function Navigation() {
           }}
         />
         <Tab.Screen
-         name="AllProducts"
+         name="Products"
          component={AllProducts}
          options={{
           tabBarLabel: () => { return null },
@@ -110,12 +110,12 @@ export function Navigation() {
         }}
         />
         <Tab.Screen
-        name="AddPost"
+        name="Add Product"
         component={AddProductScreen}
         options={{
           tabBarLabel: () => { return null },
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{ alignItems: 'center', justifyContent: 'center',}}>
               <Image
                 source={require('../../assets/images/fashion/icons/plus.png')}
                 resizeMode='contain'
@@ -133,8 +133,8 @@ export function Navigation() {
         }}
         />
         <Tab.Screen
-          name="FollowUs"
-          component={FollowUs}
+          name="Search"
+          component={Search}
           options={{
             tabBarLabel: () => { return null },
             tabBarIcon: ({ focused }) => (

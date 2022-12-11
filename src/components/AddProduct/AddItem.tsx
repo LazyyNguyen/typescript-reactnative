@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useRef} from 'react';
 import {
   View,
   Text,
@@ -7,46 +7,47 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
-import { AllProductsServices } from '../../services/AllProductsServices';
-import {Product} from '../../modules/AllProducts';
 
-export interface Props {
-  setShoppingList: React.Dispatch<React.SetStateAction<Product[]>>;
-  shoppingList: Product[];
-}
-const AddItem: React.FC<Props> = ({shoppingList, setShoppingList}) => {
+import {useDispatch, useSelector} from 'react-redux';
+
+import GlobalStyles from '../../styles/GlobalStyles';
+import {productAction} from '../../features/product/product';
+import {Product} from '../../modules/AllProducts';
+import {addToProduct} from '../../api/product';
+
+
+const AddItem: React.FC<Product> = () => {
+
+
   const [item, setItem] = useState<Product>({
     name: '',
     price: 0 as number,
     image: '',
   });
+  const dispatch = useDispatch();
+  const onAddToProduct = async (item: Product) => {
+    try {
+      const res = await addToProduct(item);
+      dispatch(productAction.addOne(item));
+    } catch (error) {
+      console.log('🤟💋   onAddToCart   error', error);
+    }
+  };
+
   const addItem = () => {
     if (!item) {
       Alert.alert('No Item!', 'You need to enter an item');
     } else {
-      setShoppingList([
-        ...shoppingList,
-        {
-          name: item.name,
-          price: item.price,
-          image: item.image,
-        },
-      ]);
-      AllProductsServices.createProduct(item)
-      setItem({
-        name: '',
-        price: 1,
-        image: '',
-      });
+      onAddToProduct(item)
     }
   };
+
   return (
     <View>
-      <Text style={styles.heading}>Add Shopping Item</Text>
       <View style={styles.form}>
         <TextInput
           style={styles.input}
-          placeholder="Enter item"
+          placeholder="Enter name"
           value={item.name}
           onChangeText={text => setItem({...item, name: text})}
         />
@@ -57,9 +58,10 @@ const AddItem: React.FC<Props> = ({shoppingList, setShoppingList}) => {
           value={String(item.price)}
           onChangeText={text => setItem({...item, price:Number(text)})}
         />
+
         <TextInput
           style={styles.input}
-          placeholder="Enter item"
+          placeholder="Enter image"
           value={item.image}
           onChangeText={text => setItem({...item, image: text})}
         />

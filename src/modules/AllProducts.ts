@@ -2,8 +2,8 @@
 
 export interface Product {
     id?: any,
-    name: string,
+    name?: string,
     quantity?: number
     price?: number;
-    image:string
+    image?:string
 }

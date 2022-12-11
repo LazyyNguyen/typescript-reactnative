@@ -1,6 +1,8 @@
 import React, {useRef, useState, useEffect, FunctionComponent} from 'react';
 import {
   Text,
+  View,
+  Image,
   StyleSheet,
   ScrollView
   
@@ -18,13 +20,14 @@ const Cart = ({navigation, route}: ProductDetailProps) => {
        <ItemCart/>
 
       {item ?
-        <ScrollView style={{flexDirection:'row'}}>
+        <ScrollView style={{flexDirection:'row'}}
+        showsVerticalScrollIndicator={false}>
 
       <FastImage style={{ width: 50, height: 50, marginBottom: 20, alignSelf: 'center', }} source={{ uri: item?.image}} />
       <Text>
           {item.name}
       </Text>
-      <Text>${item.price}</Text>
+      <Text style={GlobalStyles.productPrice}>${item.price}</Text>
       
       </ScrollView> :
       <Text>Don't have any</Text>}

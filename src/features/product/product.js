@@ -6,6 +6,7 @@ const productSlice = createSlice({
   name: 'product',
   initialState: product.getInitialState(),
   reducers: {
+    addOne: product.addOne,
     addAll: product.addMany,
     removeAll: product.removeAll,
   },

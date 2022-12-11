@@ -1,45 +1,21 @@
-import React, { useEffect,useState} from 'react';
+import React, { useRef } from 'react';
 import {View, Text, StyleSheet, FlatList,Image} from 'react-native';
 import {Product} from '../../modules/AllProducts';
-import { AllProductsServices } from '../../services/AllProductsServices';
-import { IState } from '../../screens/components/AllProducts';
+import FastImage from 'react-native-fast-image';
+import GlobalStyles from '../../styles/GlobalStyles';
 
 const Item: React.FC<Product> = ({name, price, image}) => {
-  const[listProduct, setListProduct] = useState<IState>({
-    loading: false,
-    products: [] as Product[],
-    errorMsg: '',
-  })
-  useEffect(() => {
-    setListProduct({ ...listProduct, loading: true })
-    AllProductsServices.getAllProducts()
-      .then(res => setListProduct({
-        ...listProduct,
-        loading: false,
-        products: res.data
-      }))
-      .catch(err => setListProduct({
-        ...listProduct, loading: false, errorMsg: err.message
-      }))
-  }, []);
   return (
-    <FlatList
-    data={listProduct.products}
-    keyExtractor={(_, index) => index.toString()}
-
-    renderItem={({ item, index }) => {
-      return (
         <View style={styles.item}>
-        <Image style={{height:80, width: 50,}}source={{ uri: item?.image}}/>
-        <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles.quantity}>${item.price}</Text>
+        <FastImage style={{height:60, width: 50,}}source={{ uri: image}}/>
+        <Text style={[GlobalStyles.productName,styles.name]}>{name}</Text>
+        <Text style={GlobalStyles.productPrice}>${price}</Text>
       </View>
   
 
       );
-    }}
-    />
-  );
+    
+  
 };
 const styles = StyleSheet.create({
   item: {
@@ -50,16 +26,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.2)',
   },
-  itemName: {
-    fontWeight: '500',
-  },
-  quantity: {
-    padding: 6,
-    borderWidth: 1,
-    borderColor: 'rgba(0, 0, 0, 0.2)',
-    borderRadius: 10,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-  },
+  name:{
+    width:200,
+  }
 });
 export default Item;
