@@ -18,7 +18,6 @@ import FastImage from 'react-native-fast-image';
 const ItemCart: React.FC = () => {
   const cartList = useSelector(cartSelectors.selectAll);
   const dispatch = useDispatch();
-
   useEffect(() => {
     fetchCart();
   }, []);
@@ -46,7 +45,7 @@ const ItemCart: React.FC = () => {
   return (
     <View >
       <FlatList
-      style={{bottom: 200}}
+      style={{marginBottom: 200}}
         showsVerticalScrollIndicator={false}
         data={cartList}
         keyExtractor={(_, index) => index.toString()}

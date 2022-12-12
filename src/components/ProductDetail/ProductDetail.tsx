@@ -230,7 +230,9 @@ const ProductDetail = ({navigation, route}: ProductDetailProps) => {
             </View>
 
             <Text style={GlobalStyles.title}>MAY YOU ALSO LIKE</Text>
+            <ScrollView style={{height: 560}}>
             <AllProducts navigation={navigation} />
+            </ScrollView>
           </ScrollView>
         </View>
       ) : (

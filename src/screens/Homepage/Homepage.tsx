@@ -57,7 +57,7 @@ const Homepage = ({navigation}: HomepageProps) => {
           <View>
             <TouchableOpacity
               style={styles.emore}
-              onPress={() => navigation.navigate(`AllProducts`)}>
+              onPress={() => navigation.navigate(`Products`)}>
               <Text style={{fontSize: 16}}>Explore more</Text>
               <Image
                 style={styles.forwardArrow}
