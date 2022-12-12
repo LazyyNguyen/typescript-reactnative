@@ -22,6 +22,7 @@ export interface AllProductsProps{
 const { width, height } = Dimensions.get('screen');
 export const AllProducts: FunctionComponent<AllProductsProps> = ({navigation}) => {
   
+  //Hàm useSelector cần truyền vào 1 hàm callback có tham số là root state và trả về state cần lấy
   const productList = useSelector(productSelectors.selectAll);
   const dispatch = useDispatch();
   const [selectedId, setSelectedId] = useState(null);

@@ -14,8 +14,9 @@ import {getCart, removeFromCart} from '../../api/product';
 import {Product} from '../../modules/AllProducts';
 import GlobalStyles from '../../styles/GlobalStyles';
 import FastImage from 'react-native-fast-image';
+import {AllProductsProps} from '../Product/AllProducts'
 
-const ItemCart: React.FC = () => {
+const ItemCart: React.FC<AllProductsProps> = ({navigation}) => {
   const cartList = useSelector(cartSelectors.selectAll);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -75,7 +76,8 @@ const ItemCart: React.FC = () => {
           bottom:200
         }}>
 
-      <TouchableOpacity style={{marginRight:13, marginLeft:13, height:40, backgroundColor:'black',alignItems: 'center', paddingBottom:10, paddingTop:10 }}>
+      <TouchableOpacity style={{marginRight:13, marginLeft:13, height:40, backgroundColor:'black',alignItems: 'center', paddingBottom:10, paddingTop:10 }}
+      onPress={() => navigation.navigate(`Checkout`)}>
         <Text style={GlobalStyles.buttonText}>CHECK OUT</Text>
       </TouchableOpacity>
       <View

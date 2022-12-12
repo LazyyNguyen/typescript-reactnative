@@ -17,7 +17,7 @@ import ItemCart from './ItemCart';
 const Cart = ({navigation, route}: ProductDetailProps) => {
   const {item} = route.params || {};
   return <>
-       <ItemCart/>
+       <ItemCart navigation={navigation}/>
 
       {item ?
         <ScrollView style={{flexDirection:'row'}}

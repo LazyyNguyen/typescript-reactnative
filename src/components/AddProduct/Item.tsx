@@ -4,7 +4,7 @@ import {Product} from '../../modules/AllProducts';
 import FastImage from 'react-native-fast-image';
 import GlobalStyles from '../../styles/GlobalStyles';
 
-const Item: React.FC<Product> = ({name, price, image}) => {
+const Item: React.FC<Product> = ({name, price, image}:Product) => {
   return (
         <View style={styles.item}>
         <FastImage style={{height:60, width: 50,}}source={{ uri: image}}/>

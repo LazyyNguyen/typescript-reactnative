@@ -23,6 +23,7 @@ const AddItem: React.FC<Product> = () => {
     name: '',
     price: 0 as number,
     image: '',
+    quantity: 1
   });
   const dispatch = useDispatch();
   const onAddToProduct = async (item: Product) => {

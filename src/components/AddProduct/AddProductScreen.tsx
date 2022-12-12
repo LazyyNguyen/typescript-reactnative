@@ -8,7 +8,7 @@ import {Product} from '../../modules/AllProducts';
 
 
 import Item from './Item';
-const AddProductScreen = () => {
+const AddProductScreen: React.FC<Product>= () => {
   const productList = useSelector(productSelectors.selectAll);
 
   return (

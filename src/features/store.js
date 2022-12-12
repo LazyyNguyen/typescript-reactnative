@@ -27,7 +27,9 @@ if (__DEV__) {
 }
 
 const persistWraperReducer = persistReducer(persist, allReducers);
-
+// khởi tạo một store bằng hàm  configureStore 
+//sẽ mặc định thiết lập cho phép sử dụng redux devtool để debug 
+//và theo dõi quá trình cập nhật state cũng như thiết lập sẵn một số middleware.
 export const store = configureStore({
   reducer: persistWraperReducer,
   middleware,
